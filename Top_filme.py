@@ -6,20 +6,27 @@
 lista_filme = [ { 'nume': 'George', 'filme': ['Shrek', 'Bond', 'Fight Club'] },
 { 'nume' : 'Cristian', 'filme': ['Fight Club', 'The Nun', 'Dracula', 'Bond']},
 { 'nume' : 'Stefan', 'filme': ['Fight Club', 'Slumdog Milionare']}]
-
-lst_film = lista_filme[0]["filme"] + lista_filme[1]["filme"] + lista_filme[2]["filme"]
+a = lista_filme[0]["filme"]
+b = lista_filme[1]["filme"]
+c = lista_filme[2]["filme"]
+# print(type(a))
+lst_film = a + b + c
+# print("Nr de filme vazute", lista_filme[0].count["filme"])
 count = {}
 for f in lst_film:
-    if f in count:
-        count[f] += 1
-    else:
-        count[f] = 1
+    # if f in count:
+    #     count[f] += 1
+    # else:
+    #     count[f] = 1
+    count[i]
 print(count)
 for i,j in count.items():
 #    if j > 0:
         print(f"{i} a fost vizionat de {j} ori")
 print(lst_film)
 
+lst_nume = lista_filme[0]["nume"] + lista_filme[1]["nume"] + lista_filme[2]["nume"]
+print(lst_nume)
 # my_list = ['a', 'b', 'c', 'a', 'd', 'e', 'b', 'a']
 # count_dict = {}
 #
