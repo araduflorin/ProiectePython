@@ -17,19 +17,19 @@ for el in lista_filme:
     # e = len(el.get("filme"))
     e = len(el.get("filme"))
     n = el.get("nume")
-    nume_utilizatori = {n: e}
-    print("Nume utilizatori: ",nume_utilizatori)
+    nume_utilizatori [n]= e
+# print("Nume utilizatori: ",nume_utilizatori)
 
 sort_nume_utilizatori = {}
 sortare_val_utilizatori = sorted(nume_utilizatori, key=nume_utilizatori.get, reverse=True)
 for n in sortare_val_utilizatori:
     sort_nume_utilizatori[n] = nume_utilizatori[n]
-    # print("Utilizatori sortati: ",sort_nume_utilizatori)
+# print("Utilizatori sortati: ",sort_nume_utilizatori)
 
 # for f in d.items():
 #     print(f)
-# n=max(d , key=d.get)
-print("Utilizatorul cu cele mai multe filme vizionate este: ", e)
+u = list(sort_nume_utilizatori.keys())[0]
+print("Utilizatorul cu cele mai multe filme vizionate este: ", u)
 
 # for i, j in enumerate(lista_filme):
 #      for v in j.get("filme"):
