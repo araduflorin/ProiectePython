@@ -8,6 +8,8 @@ lista_filme = [{'nume': 'George', 'filme': ['Shrek', 'Bond', 'Fight Club']},
                {'nume': 'Cristian', 'filme': ['Fight Club', 'The Nun', 'Dracula', 'Bond']},
                {'nume': 'Stefan', 'filme': ['Fight Club', 'Slumdog Milionare']}]
 # print(len(lista_filme[0]["filme"]))
+for v, i in enumerate(lista_filme[1]['filme']):
+    print(v,i)
 # print(lista_filme.sort(key=operator.itemgetter("filme") ))
 sort_film = {}
 # l = lista_filme.e
@@ -18,17 +20,26 @@ for el in lista_filme:
     e = len(el.get("filme"))
     n = el.get("nume")
     nume_utilizatori [n]= e
-# print("Nume utilizatori: ",nume_utilizatori)
+print("Nume utilizatori: ",nume_utilizatori)
 
+inverted_viewers = dict()
+for key in  nume_utilizatori:
+    value = nume_utilizatori[key]
+    print('Curent [ ', key, ']=>[', value, ']')
+    inverted_viewers[value] = [key]
+    l = list(inverted_viewers).sort()
+sorted(inverted_viewers.items())
+print(sorted(inverted_viewers.items()))
+u = list(inverted_viewers.values())[0]
 sort_nume_utilizatori = {}
 sortare_val_utilizatori = sorted(nume_utilizatori, key=nume_utilizatori.get, reverse=True)
 for n in sortare_val_utilizatori:
     sort_nume_utilizatori[n] = nume_utilizatori[n]
-# print("Utilizatori sortati: ",sort_nume_utilizatori)
+print("Utilizatori sortati: ",sort_nume_utilizatori)
 
 # for f in d.items():
 #     print(f)
-u = list(sort_nume_utilizatori.keys())[0]
+# u = list(sort_nume_utilizatori.keys())[0]
 print("Utilizatorul cu cele mai multe filme vizionate este: ", u)
 
 # for i, j in enumerate(lista_filme):
