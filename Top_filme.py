@@ -1,159 +1,48 @@
-# d1 = {'nume': 'George', 'filme': ['Shrek', 'Bond', 'Fight Club'] }
-# d2 = { 'nume' : 'Cristian', 'filme': ['Fight Club', 'The Nun', 'Dracula', 'Bond']}
-# d3 = { 'nume' : 'Stefan', 'filme': ['Fight Club', 'Slumdog Milionare'] }
-# v = [ d1, d2, d3 ]
-import operator
 
 lista_filme = [{'nume': 'George', 'filme': ['Shrek', 'Bond', 'Fight Club']},
                {'nume': 'Cristian', 'filme': ['Fight Club', 'The Nun', 'Dracula', 'Bond']},
                {'nume': 'Stefan', 'filme': ['Fight Club', 'Slumdog Milionare']}]
-# print(len(lista_filme[0]["filme"]))
-filme1=[]
+
+filme=[]
 for i, v in enumerate(lista_filme[0]['filme']):
-    filme1.append(v)
-    # print("Lista: ", v)
+    filme.append(v)
 
 for i, v in enumerate(lista_filme[1]['filme']):
-    filme1.append(v)
-    # print("Lista: ", v)
+    filme.append(v)
 
 for i, v in enumerate(lista_filme[2]['filme']):
-    filme1.append(v)
-    # print("Lista: ", v)
-print(filme1)
+    filme.append(v)
 
 filme_adunate=[]
-for i in filme1:
-    # filme_adunate.append(i.count(i))
-    count_filme=filme1.count(i)
+for i in filme:
+    count_filme=filme.count(i)
     filme_adunate.append((count_filme,i))
 
 unice = set(filme_adunate)
-lista2 = list(unice)
-lista2.sort()
-print(lista2)
-print(lista2[-1][1])
+lista_unice = list(unice)
+lista_unice.sort()
+print("Cel mai vizionat film este:",lista_unice[-1][1])
 
 # -------------------------------------------
-
 list_users = []
-lst=[]
-for i in enumerate(lista_filme):
+for i in lista_filme:
+    n = i.get("nume")
+    f = len(i.get("filme"))
+    list_users.append((f,n))
+list_users.sort()
+print("Utilizatorul cu cele mai multe filme vizionate: ", list_users[-1][1])
 
-    list_users.append(i)
-    n = list_users.
-print(lst)
-l=list_users
-print("Lista users: ",l)
+#-------------------------------------------
+
+print("------------Top utilizatori------------")
+list_users_top = list_users[::-1]
+for i, j in enumerate(list_users_top):
+    print(f"{j[1]} a vizionat {j[0]} filme")
+
+# -------------------------------------------
+print("------------Top filme------------")
+lista_filme_top = lista_unice[::-1]
+for i, j in enumerate(lista_filme_top):
+    print(f"Filmul {j[1]} a fost vizionat {j[0]} ori")
 
 
-# print(lista_filme.sort(key=operator.itemgetter("filme") ))
-sort_film = {}
-# l = lista_filme.e
-nume_utilizatori= {}
-for el in lista_filme:
-    # e = [len(el.get("filme"))]
-    # e = len(el.get("filme"))
-    e = len(el.get("filme"))
-    n = el.get("nume")
-    nume_utilizatori [n]= e
-print("Nume utilizatori: ",nume_utilizatori)
-
-inverted_viewers = dict()
-for key in  nume_utilizatori:
-    value = nume_utilizatori[key]
-    print('Curent [ ', key, ']=>[', value, ']')
-    inverted_viewers[value] = [key]
-    l = list(inverted_viewers).sort()
-sorted(inverted_viewers.items())
-print(sorted(inverted_viewers.items()))
-u = list(inverted_viewers.values())[0]
-sort_nume_utilizatori = {}
-sortare_val_utilizatori = sorted(nume_utilizatori, key=nume_utilizatori.get, reverse=True)
-for n in sortare_val_utilizatori:
-    sort_nume_utilizatori[n] = nume_utilizatori[n]
-print("Utilizatori sortati: ",sort_nume_utilizatori)
-
-# for f in d.items():
-#     print(f)
-# u = list(sort_nume_utilizatori.keys())[0]
-print("Utilizatorul cu cele mai multe filme vizionate este: ", u)
-
-# for i, j in enumerate(lista_filme):
-#      for v in j.get("filme"):
-#        print(v)
-# print(v.count(i.values()))
-# print(lista_filme[i])
-# print(lista_filme[0]["filme"] + lista_filme[1]["filme"])
-lst_film = lista_filme[0]["filme"] + lista_filme[1]["filme"] + lista_filme[2]["filme"]
-
-# for i in lst_film:
-#      d = {i:lst_film.count(i)}
-# lst_film.sort()
-# d = {i:lst_film.count(i) for i in sorted(lst_film)}
-
-# print(sorted(d.items()))
-# print(d)
-# print(type(lst_film))
-dict_film = {}  # creare dictionar cu formatul {film:nr_de_vizionari}
-for film in lst_film:
-    if film in dict_film:
-        dict_film[film] += 1
-    else:
-        dict_film[film] = 1
-print("Lista filmelor: ", dict_film)
-
-# --------------------------------------------------------------------------------
-sortare_vizionari = {} # creare dictionar sortat cu formatul {film:nr_de_vizionari}
-sortare_valoare = sorted(dict_film, key=dict_film.get, reverse=True)
-for k in sortare_valoare:
-    sortare_vizionari[k] = dict_film[k]
-print("Vizionari sortate: ", sortare_vizionari)
-print(sortare_vizionari.items())
-for el, c in sortare_vizionari.items():
-    # print(el,c)
-    print(f"{el} este vizionat de {c} ori")
-# -------------------------------------------------------------------------------
-# m = max(dict_film, key=dict_film.get)  # cel mai vizionat film
-m = list(sortare_vizionari.keys())[0]
-print("Cel mai vizionat film este >>>> ", m)
-# sort_dict = sorted({(n, film) for (film, n) in dict_film.items()})
-
-# print("Lista sortata: ",sort_dict)
-# for film, n in sort_dict:
-# sort_dict = dict(sorted((n, film) for (film, n ) in dict_film.items()))
-
-# if n >= 1:
-#     print(f"{n} appears {film} times in the list.")
-# print(sort_dict)
-#      print(set(lst_film.count(f)))
-#         count[f] += 1
-#     else:
-#         count[f] = 1
-# print(count)
-# for i,j in count.items():
-# #    if j > 0:
-#         print(f"{i} a fost vizionat de {j} ori")
-print(lst_film)
-
-my_list = ['b', 'd', 'c', 'd', 'd', 'e', 'b', 'a']
-count_dict = {}
-
-# loop through the list and count occurrences of each element
-for element in my_list:
-    if element in count_dict:
-        count_dict[element] += 1
-    else:
-        count_dict[element] = 1
-# s=sorted(count_dict.items())
-# print(s)
-# for element, count in count_dict.items():
-sort_dict = {}
-sort_key = sorted(count_dict, key=count_dict.get, reverse=True)
-for w in sort_key:
-    sort_dict[w] = count_dict[w]
-print("Lista sortata: ", sort_dict)
-
-for element, count in sort_dict.items():
-    # if count >= 1:
-    print(f"{element} appears {count} times in the list.")
