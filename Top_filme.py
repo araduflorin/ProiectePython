@@ -8,8 +8,45 @@ lista_filme = [{'nume': 'George', 'filme': ['Shrek', 'Bond', 'Fight Club']},
                {'nume': 'Cristian', 'filme': ['Fight Club', 'The Nun', 'Dracula', 'Bond']},
                {'nume': 'Stefan', 'filme': ['Fight Club', 'Slumdog Milionare']}]
 # print(len(lista_filme[0]["filme"]))
-for v, i in enumerate(lista_filme[1]['filme']):
-    print(v,i)
+filme1=[]
+for i, v in enumerate(lista_filme[0]['filme']):
+    filme1.append(v)
+    # print("Lista: ", v)
+
+for i, v in enumerate(lista_filme[1]['filme']):
+    filme1.append(v)
+    # print("Lista: ", v)
+
+for i, v in enumerate(lista_filme[2]['filme']):
+    filme1.append(v)
+    # print("Lista: ", v)
+print(filme1)
+
+filme_adunate=[]
+for i in filme1:
+    # filme_adunate.append(i.count(i))
+    count_filme=filme1.count(i)
+    filme_adunate.append((count_filme,i))
+
+unice = set(filme_adunate)
+lista2 = list(unice)
+lista2.sort()
+print(lista2)
+print(lista2[-1][1])
+
+# -------------------------------------------
+
+list_users = []
+lst=[]
+for i in enumerate(lista_filme):
+
+    list_users.append(i)
+    n = list_users.
+print(lst)
+l=list_users
+print("Lista users: ",l)
+
+
 # print(lista_filme.sort(key=operator.itemgetter("filme") ))
 sort_film = {}
 # l = lista_filme.e
