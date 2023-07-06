@@ -1,3 +1,4 @@
+import datetime
 
 list_S = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 list_LL = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
@@ -17,6 +18,13 @@ def nr_control_validation(cnp):
         sum_control = sum_control + int(j)
     return sum_control % 11
 
+def verificare(an, luna, zi):
+    try:
+        datetime.datetime(int(an), int(luna), int(zi))
+        return True
+    except ValueError:
+        return False
+
 def number_validate():
     nr = input("Introdu CNP-ul format din 13 cifre: ")
     while True:
@@ -33,14 +41,18 @@ def number_validate():
         if (nr[0]) not in list_S:
             nr = input(f"Prima cifra ({nr[0]}) trebuie sa fie intre 1 si 9: ")
             continue
-        if (nr[0]) in ['5', '6'] and int(nr[1:3]) > 23:
-            nr = input(f"Nr. format din cifrele 2 si 3 ({nr[1:3]}) tr sa fie < 24: ")
-            continue
-        if (nr[3:5]) not in list_LL:
-            nr = input(f"Nr. format din cifrele 4 si 5 ({nr[3:5]}), luna, tb. sa fie cuprinse in intevalul 01-12: ")
-            continue
-        if (nr[5:7]) not in list_ZZ:
-            nr = input(f"Nr. format din cifrele 6 si 7 ({nr[5:7]}), ziua, tb. sa fie cuprinse in intevalul 01-31: ")
+        # if (nr[0]) in ['5', '6'] and int(nr[1:3]) > 23:
+        #     nr = input(f"Nr. format din cifrele 2 si 3 ({nr[1:3]}) tr sa fie < 24: ")
+        #     continue
+        # if (nr[3:5]) not in list_LL:
+        #     nr = input(f"Nr. format din cifrele 4 si 5 ({nr[3:5]}), luna, tb. sa fie cuprinse in intevalul 01-12: ")
+        #     continue
+        # if (nr[5:7]) not in list_ZZ:
+        #     nr = input(f"Nr. format din cifrele 6 si 7 ({nr[5:7]}), ziua, tb. sa fie cuprinse in intevalul 01-31: ")
+        #     continue
+
+        if verificare(int(nr[1:3]), int(nr[3:5]), int(nr[5:7])) is False:
+            nr = input(f"Data formata din cifrele de la 2 la 7 ({nr[1:7]}) nu este valida: ")
             continue
         if (nr[7:9]) not in list_JJ:
             nr = input(f"Nr. format din cifrele 8 si 9 ({nr[7:9]}), judetul, tb. sa fie cuprinse in intervalele 01-46 si 51-52: ")

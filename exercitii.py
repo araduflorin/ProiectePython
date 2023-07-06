@@ -190,16 +190,75 @@
 
 
 # afisare intr-o lista ani bisecti
-def list_leap_years(list):
-    leap_years = []
-    for i in list:
-        if ((int(i) % 4 == 0 and int(i) % 100 != 0) or int(i) % 400 == 0):
-            leap_years.append(i)
-    return leap_years
+# def list_leap_years(list):
+#     leap_years = []
+#     for i in list:
+#         if ((int(i) % 4 == 0 and int(i) % 100 != 0) or int(i) % 400 == 0):
+#             leap_years.append(i)
+#     return leap_years
+#
+# list = range(1800, 2100)
+# list1 = range(1800, 2100)
+# lst_leap_years = [i for i in list1 if ((int(i) % 4 == 0 and int(i) % 100 != 0) or int(i) % 400 == 0)]
+#
+# print(list_leap_years(list))
+# print(lst_leap_years)
 
-list = range(1800, 2100)
-list1 = range(1800, 2100)
-lst_leap_years = [i for i in list1 if ((int(i) % 4 == 0 and int(i) % 100 != 0) or int(i) % 400 == 0)]
+# verificare data
+list_LL = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+list_ZZ = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12',
+           '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24',
+           '25', '26', '27', '28', '29', '30', '31']
+import datetime
+def verificare(an, luna, zi):
+    print(str(datetime.datetime(int(an), int(luna), int(zi))))
+    try:
+        datetime.datetime(int(an), int(luna), int(zi))
+        return True
+    except ValueError:
+        # print(datetime.datetime(int(an), int(luna), int(zi)))
+        return False
 
-print(list_leap_years(list))
-print(lst_leap_years)
+
+list_century_20 = list(range(1900,2000))
+print(f" list_century_20)
+data = "000228"
+data_i = datetime.datetime(1901,1,1)
+data_s = datetime.datetime(1901,12,31)
+print(data_i.strftime('%y%m%d'))
+r = []
+for n in range(int((data_s-data_i).days)):
+    r.append(data_i+datetime.timedelta(n))
+
+# print("Range:", r)
+# data_r = list(range(data_i, data_s))
+print(f'{list_century_20:03d}')
+# print(data_s.strptime("%y"))
+# if verificare(8, 3, 16) is True:
+#
+#     print("Data este corecta")
+# else:
+#     print("Data este gresita")
+
+print(verificare(1800, 2, 27))
+# datetime.datetime.year
+# print(datetime.datetime.strptime(data, "%y"))
+
+# def find_century(year):
+#     # No negative value is allow for year
+#     if (year <= 0):
+#         print("0 and negative is not allow for a year")
+#
+#     # If year is between 1 to 100 it
+#     # will come in 1st century
+#     elif (year <= 100):
+#         print("1st century")
+#     elif (year % 100 == 0):
+#         print(year // 100, "century")
+#     else:
+#         print(year // 100 + 1, "century")
+#
+#
+# # Driver code
+# year = 1820
+# find_century(year)
