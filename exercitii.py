@@ -8,6 +8,7 @@
 # }
 # print(x['a'])
 
+
 # 2
 # def a(parametru):
 #     parametru[2] = 'f'
@@ -209,30 +210,72 @@ list_LL = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12
 list_ZZ = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12',
            '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24',
            '25', '26', '27', '28', '29', '30', '31']
+
 import datetime
+
+# def verificare(an, luna, zi):
+#     print(str(datetime.datetime(int(an), int(luna), int(zi))))
+#     try:
+#         datetime.datetime(int(an), int(luna), int(zi))
+#         return True
+#     except ValueError:
+#         # print(datetime.datetime(int(an), int(luna), int(zi)))
+#         return False
+
 def verificare(an, luna, zi):
-    print(str(datetime.datetime(int(an), int(luna), int(zi))))
-    try:
-        datetime.datetime(int(an), int(luna), int(zi))
-        return True
-    except ValueError:
-        # print(datetime.datetime(int(an), int(luna), int(zi)))
-        return False
+    data_i1 = datetime.datetime.strptime("1900-1-1", "%Y-%m-%d")
+    data_s1 = datetime.datetime.strptime("2000-1-1", "%Y-%m-%d")
+    day_delta = datetime.timedelta(days=1)
+    t = data_s1-data_i1
+    r=[]
+    for d in range(t.days):
+        data=data_i1+d*day_delta
+        r.append(data.strftime("%y%m%d"))
+        # print(data.strftime("%Y-%m-%d"))
+    # r.append(data)
+    print(r)
+    data_check = str(an)+str(luna)+str(zi)
+    # data_check = datetime.datetime.strftime(datetime.datetime(int(an), int(luna), int(zi)), "%Y%m%d")
+    print(data_check)
+    if data_check in r:
+        print("Data exista")
+    else:
+        print("Data nu exista")
 
-
-list_century_20 = list(range(1900,2000))
-print(f" list_century_20)
-data = "000228"
-data_i = datetime.datetime(1901,1,1)
-data_s = datetime.datetime(1901,12,31)
-print(data_i.strftime('%y%m%d'))
-r = []
-for n in range(int((data_s-data_i).days)):
-    r.append(data_i+datetime.timedelta(n))
+print(verificare("99","02","28"))
+#-----------------------------
+# list_century_20 = list(range(1900,2000))
+# print(f" list_century_20")
+# # data = "000228"
+# data_i = datetime.datetime(1901,1,1)
+# data_s = datetime.datetime(1900,1,10)
+# # dat = datetime.datetime()
+# # data_i = datetime.datetime.strftime(1901,1,1)
+# data_i1 = datetime.datetime.strptime("1900-1-1", "%Y-%m-%d")
+# data_s1 = datetime.datetime.strptime("2000-1-1", "%Y-%m-%d")
+# day_delta = datetime.timedelta(days=1)
+# t = data_s1-data_i1
+# r=[]
+# for d in range(t.days):
+#     data=data_i1+d*day_delta
+#     r.append(data.strftime("%y%m%d"))
+#     # print(data.strftime("%Y-%m-%d"))
+# # r.append(data)
+# print(r)
+# data_check = "970229"
+# if data_check in r:
+#     print("Data exista")
+# else:
+#     print("Data nu exista")
+#---------------------------
+# print(data_i.strftime('%y%m%d'))
+# r = []
+# for n in range(int((data_s-data_i).days)):
+#     r.append(data_i+datetime.timedelta(n))
 
 # print("Range:", r)
 # data_r = list(range(data_i, data_s))
-print(f'{list_century_20:03d}')
+# print(f'{list_century_20:03d}')
 # print(data_s.strptime("%y"))
 # if verificare(8, 3, 16) is True:
 #
@@ -240,7 +283,7 @@ print(f'{list_century_20:03d}')
 # else:
 #     print("Data este gresita")
 
-print(verificare(1800, 2, 27))
+# print(verificare(1800, 2, 27))
 # datetime.datetime.year
 # print(datetime.datetime.strptime(data, "%y"))
 
