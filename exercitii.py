@@ -164,15 +164,15 @@
 # print(s % 11)
 
 # calculare cu nr de control
-# def nr_control_validation(cnp):
-#     nr_control = '279146358279'
-#     list_multiplication = [int(nr_control[i]) * int(cnp[i]) for i in range(0, len(list(nr_control)))]
-#     sum_control = 0
-#     for j in list_multiplication:
-#         sum_control = sum_control + int(j)
-#     return sum_control % 11
-#
-# print(nr_control_validation('1781111529316'))
+def nr_control_validation(cnp):
+    nr_control = '279146358279'
+    list_multiplication = [int(nr_control[i]) * int(cnp[i]) for i in range(0, len(list(nr_control)))]
+    sum_control = 0
+    for j in list_multiplication:
+        sum_control = sum_control + int(j)
+    return sum_control % 11
+
+print(nr_control_validation('300022913654'))
 
 # calculare an bisect
 # def leap_year():
@@ -199,11 +199,11 @@
 #     return leap_years
 #
 # list = range(1800, 2100)
-# list1 = range(1800, 2100)
-# lst_leap_years = [i for i in list1 if ((int(i) % 4 == 0 and int(i) % 100 != 0) or int(i) % 400 == 0)]
+list1 = range(1800, 2100)
+lst_leap_years = [i for i in list1 if ((int(i) % 4 == 0 and int(i) % 100 != 0) or int(i) % 400 == 0)]
 #
 # print(list_leap_years(list))
-# print(lst_leap_years)
+print(lst_leap_years)
 
 # verificare data
 list_LL = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
@@ -225,20 +225,15 @@ import datetime
 def verificare(an, luna, zi):
     # global data
     data_i1 = datetime.datetime.strptime("1800-1-1", "%Y-%m-%d")
-    data_s1 = datetime.datetime.strptime("2100-3-1", "%Y-%m-%d")
+    data_s1 = datetime.datetime.strptime("1804-3-3", "%Y-%m-%d")
     day_delta = datetime.timedelta(days=1)
     t = data_s1-data_i1
-    r=[]
-    for d in range(t.days):
-        data=data_i1+d*day_delta
-        # print("Data", datetime.datetime.strptime(str(data), "%Y-%m-%d").date().strftime("%Ey%m%d"))
-        # r.append(data.strftime("%y%m%d"))
+    # r=[]
+    # for d in range(t.days):
+    #     data=data_i1+d*day_delta
+    #     r.append(data.strftime("%Ey%m%d"))
 
-        r.append(data.strftime("%Ey%m%d"))
-        # r.append(datetime.datetime.strptime(str(data), "%y-%m-%d").date())
-        # print(data.strftime("%Y-%m-%d"))
-    # r.append(data)
-    # print(data)
+    r = [(data_i1+d*day_delta).strftime("%Ey%m%d") for d in range(t.days) ]
     print("Lista", r)
     data_check = str(an)+str(luna)+str(zi)
     # data_check = datetime.datetime.strftime(datetime.datetime(int(an), int(luna), int(zi)), "%Y%m%d")
@@ -248,7 +243,7 @@ def verificare(an, luna, zi):
     else:
         print("Data nu exista")
 
-print(verificare("23","12","31"))
+print(verificare("04","02","29"))
 #-----------------------------
 # list_century_20 = list(range(1900,2000))
 # print(f" list_century_20")

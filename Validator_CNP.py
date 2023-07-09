@@ -18,10 +18,13 @@ def date_validation(an, luna, zi):
     date_end = datetime.datetime.strptime("2100-1-1", "%Y-%m-%d")
     day_delta = datetime.timedelta(days=1)
     date_range = date_end - date_start
-    list_date = []
-    for d in range(date_range.days):
-        date_all = date_start + d * day_delta
-        list_date.append(date_all.strftime("%Ey%m%d"))
+    # list_date = []
+    # for d in range(date_range.days):
+    #     date_all = date_start + d * day_delta
+    #     list_date.append(date_all.strftime("%Ey%m%d"))
+
+    list_date = [(date_start + d * day_delta).strftime("%Ey%m%d") for d in range(date_range.days)]
+
     data_check = str(an) + str(luna) + str(zi)
     if data_check in list_date:
         return True
