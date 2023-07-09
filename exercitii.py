@@ -8,7 +8,6 @@
 # }
 # print(x['a'])
 
-
 # 2
 # def a(parametru):
 #     parametru[2] = 'f'
@@ -164,15 +163,15 @@
 # print(s % 11)
 
 # calculare cu nr de control
-def nr_control_validation(cnp):
-    nr_control = '279146358279'
-    list_multiplication = [int(nr_control[i]) * int(cnp[i]) for i in range(0, len(list(nr_control)))]
-    sum_control = 0
-    for j in list_multiplication:
-        sum_control = sum_control + int(j)
-    return sum_control % 11
-
-print(nr_control_validation('300022913654'))
+# def nr_control_validation(cnp):
+#     nr_control = '279146358279'
+#     list_multiplication = [int(nr_control[i]) * int(cnp[i]) for i in range(0, len(list(nr_control)))]
+#     sum_control = 0
+#     for j in list_multiplication:
+#         sum_control = sum_control + int(j)
+#     return sum_control % 11
+#
+# print(nr_control_validation('1781111529316'))
 
 # calculare an bisect
 # def leap_year():
@@ -191,118 +190,16 @@ print(nr_control_validation('300022913654'))
 
 
 # afisare intr-o lista ani bisecti
-# def list_leap_years(list):
-#     leap_years = []
-#     for i in list:
-#         if ((int(i) % 4 == 0 and int(i) % 100 != 0) or int(i) % 400 == 0):
-#             leap_years.append(i)
-#     return leap_years
-#
-# list = range(1800, 2100)
+def list_leap_years(list):
+    leap_years = []
+    for i in list:
+        if ((int(i) % 4 == 0 and int(i) % 100 != 0) or int(i) % 400 == 0):
+            leap_years.append(i)
+    return leap_years
+
+list = range(1800, 2100)
 list1 = range(1800, 2100)
 lst_leap_years = [i for i in list1 if ((int(i) % 4 == 0 and int(i) % 100 != 0) or int(i) % 400 == 0)]
-#
-# print(list_leap_years(list))
+
+print(list_leap_years(list))
 print(lst_leap_years)
-
-# verificare data
-list_LL = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-list_ZZ = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12',
-           '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24',
-           '25', '26', '27', '28', '29', '30', '31']
-
-import datetime
-
-# def verificare(an, luna, zi):
-#     print(str(datetime.datetime(int(an), int(luna), int(zi))))
-#     try:
-#         datetime.datetime(int(an), int(luna), int(zi))
-#         return True
-#     except ValueError:
-#         # print(datetime.datetime(int(an), int(luna), int(zi)))
-#         return False
-
-def verificare(an, luna, zi):
-    # global data
-    data_i1 = datetime.datetime.strptime("1800-1-1", "%Y-%m-%d")
-    data_s1 = datetime.datetime.strptime("1804-3-3", "%Y-%m-%d")
-    day_delta = datetime.timedelta(days=1)
-    t = data_s1-data_i1
-    # r=[]
-    # for d in range(t.days):
-    #     data=data_i1+d*day_delta
-    #     r.append(data.strftime("%Ey%m%d"))
-
-    r = [(data_i1+d*day_delta).strftime("%Ey%m%d") for d in range(t.days) ]
-    print("Lista", r)
-    data_check = str(an)+str(luna)+str(zi)
-    # data_check = datetime.datetime.strftime(datetime.datetime(int(an), int(luna), int(zi)), "%Y%m%d")
-    print(data_check)
-    if data_check in r:
-        print("Data exista")
-    else:
-        print("Data nu exista")
-
-print(verificare("04","02","29"))
-#-----------------------------
-# list_century_20 = list(range(1900,2000))
-# print(f" list_century_20")
-# # data = "000228"
-# data_i = datetime.datetime(1901,1,1)
-# data_s = datetime.datetime(1900,1,10)
-# # dat = datetime.datetime()
-# # data_i = datetime.datetime.strftime(1901,1,1)
-# data_i1 = datetime.datetime.strptime("1900-1-1", "%Y-%m-%d")
-# data_s1 = datetime.datetime.strptime("2000-1-1", "%Y-%m-%d")
-# day_delta = datetime.timedelta(days=1)
-# t = data_s1-data_i1
-# r=[]
-# for d in range(t.days):
-#     data=data_i1+d*day_delta
-#     r.append(data.strftime("%y%m%d"))
-#     # print(data.strftime("%Y-%m-%d"))
-# # r.append(data)
-# print(r)
-# data_check = "970229"
-# if data_check in r:
-#     print("Data exista")
-# else:
-#     print("Data nu exista")
-#---------------------------
-# print(data_i.strftime('%y%m%d'))
-# r = []
-# for n in range(int((data_s-data_i).days)):
-#     r.append(data_i+datetime.timedelta(n))
-
-# print("Range:", r)
-# data_r = list(range(data_i, data_s))
-# print(f'{list_century_20:03d}')
-# print(data_s.strptime("%y"))
-# if verificare(8, 3, 16) is True:
-#
-#     print("Data este corecta")
-# else:
-#     print("Data este gresita")
-
-# print(verificare(1800, 2, 27))
-# datetime.datetime.year
-# print(datetime.datetime.strptime(data, "%y"))
-
-# def find_century(year):
-#     # No negative value is allow for year
-#     if (year <= 0):
-#         print("0 and negative is not allow for a year")
-#
-#     # If year is between 1 to 100 it
-#     # will come in 1st century
-#     elif (year <= 100):
-#         print("1st century")
-#     elif (year % 100 == 0):
-#         print(year // 100, "century")
-#     else:
-#         print(year // 100 + 1, "century")
-#
-#
-# # Driver code
-# year = 1820
-# find_century(year)
