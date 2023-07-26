@@ -11,16 +11,22 @@ def csv_reader_categories():
 
 
 def add_categories():
-    with open('categories.csv', mode='a', newline='') as file:
-        list_add_categories = csv_reader_categories()
-        print(list_add_categories)
-        var_category = input("Adauga o noua categorie: ").lower()
-        list_categories_new = [i[0].lower() for i in list_add_categories]
-        if var_category not in list_categories_new:
-            writer = csv.writer(file)
-            writer.writerow([var_category])
-        else:
-            print('Eelementul exiat deja')
+    while True:
+        with open('categories.csv', mode='a', newline='') as file:
+            list_add_categories = csv_reader_categories()
+            print(list_add_categories)
+            var_category = input("Adauga o noua categorie: ").lower()
+            list_categories_new = [i[0].lower() for i in list_add_categories]
+            if var_category not in list_categories_new:
+                writer = csv.writer(file)
+                writer.writerow([var_category])
+                exit_opt = input('Continuati adaugarea? (d\\n) ')
+                if exit_opt == 'd':
+                    continue
+                elif exit_opt == 'n':
+                    break
+            else:
+                print('Categoria exista deja')
     return
 
 
@@ -30,26 +36,20 @@ def csv_reader_tasks():
         tasks = csv.reader(file)
         for task in tasks:
             list_tasks.append(task)
-        #     print(row[0])
-        # print(list_tasks)
     return list_tasks
 
 
 def add_tasks():
     while True:
         with open('tasks.csv', mode='a', newline='') as file:
-            # exit_opt = input('Continuati adaugarea? (d\\n)')
-            # if exit_opt == 'd':
             list_add_tasks = csv_reader_tasks()
             list_categories = csv_reader_categories()
-            # for index, row in enumerate(list_add_tasks):
-            # print(row)
             print(list(map(print, sorted(list_add_tasks, key=lambda cat: cat[3]))))
-            # list_sorted_by_category = sorted(list_add_tasks, key=lambda cat: list_add_tasks(row[3]), reverse=True)
+
             check_tasks = []
             for index, row in enumerate(list_add_tasks):
                 check_tasks.append(row[0])
-            print('Check task:', check_tasks)
+            print('Verifica task:', check_tasks)
 
             list_check_category = [cat for lst_cat in list_categories for cat in lst_cat]
             print(list_check_category)
@@ -74,8 +74,76 @@ def add_tasks():
             else:
                 print('Task-ul exista deja!')
                 continue
-        # elif exit_opt == 'n':
-        #     break
+    return
+
+
+def edit_task():
+    while True:
+        list_tasks = csv_reader_tasks()
+        list_categories = csv_reader_categories()
+        check_task = []
+        print("Lista task-uri pentru editat: ")
+        for index, row in enumerate(list_tasks):
+            # for r in row:
+                # print(index, r)
+            print(index, row)
+            check_task.append(row[0])
+        print("Task-uri existente:", check_task)
+
+        list_check_category = [cat for lst_cat in list_categories for cat in lst_cat]
+
+        index_task = int(input("Introduceti nr task-ului de modificat: "))
+        var_task = input("Editeaza task-ul: ").lower()
+        var_date = input("Editeaza data: ").lower()
+        var_person = input("Editeaza persoana responsabila: ").lower()
+        var_category = input("Editeaza categoria: ").lower()
+        list_tasks_update = [var_task, var_date, var_person, var_category]
+
+        list_tasks[index_task] = list_tasks_update
+
+        if var_task not in check_task:
+            if var_category in list_check_category:
+                with open('tasks.csv', mode='w', newline='') as csv_file:
+                    write = csv.writer(csv_file)
+                    for task in list_tasks:
+                        write.writerow(task)
+                    print("Task-ul a fost modificat:")
+                    for index, row in enumerate(list_tasks):
+                        print(index, row)
+                    exit_opt = input('Continuati editarea? (d\\n)')
+                    if exit_opt == 'd':
+                        continue
+                    elif exit_opt == 'n':
+                        break
+            else:
+                print(f'Categoria {var_category} nu exista!')
+                continue
+        else:
+            print(f'Task-ul {var_task} exista deja!')
+            continue
+    return
+
+
+def delete_task():
+    while True:
+        list_tasks = csv_reader_tasks()
+
+        print("Lista task-uri pentru sters: ")
+        for index, row in enumerate(list_tasks):
+            print(index, row)
+
+        index_task = int(input("Introduceti nr task-ului pe care doriti sa il stergeti: "))
+        list_tasks.remove(list_tasks[index_task])
+
+        with open('tasks.csv', mode='w', newline='') as csv_file:
+            write = csv.writer(csv_file)
+            for task in list_tasks:
+                write.writerow(task)
+            exit_opt = input('Continuati stergerea? (d\\n)')
+            if exit_opt == 'd':
+                continue
+            elif exit_opt == 'n':
+                break
     return
 
 
@@ -159,102 +227,6 @@ def filter_categories():
     return
 
 
-def edit_task():
-    with open('tasks.csv', 'r+', newline='') as csv_file:
-        # sort_tasks = csv.reader(csv_file, delimiter=',')
-        sort_tasks = csv_reader_tasks()
-        # lst = {}
-        for index, row in enumerate(sort_tasks):
-            print(index, row)
-        # print(index, row)
-            # lst.append([index, row])
-            # lst[index] = row
-        # print(lst)
-        # sort_category_asc()
-        index_task = int(input("Introduceti nr task-ului de modificat: "))
-        print(sort_tasks[index_task])
-        var_task = input("Editeaza task-ul: ").lower()
-        var_date = input("Editeaza data: ").lower()
-        var_person = input("Editeaza persoana responsabila: ").lower()
-        var_category = input("Editeaza categoria: ").lower()
-        list_tasks = [var_task, var_date, var_person, var_category]
-        # lst[index_task] = list_tasks
-        sort_tasks[index_task] = list_tasks
-        print(sort_tasks)
-        lst = []
-        for index, row in enumerate(sort_tasks):
-            print(index, row)
-            for l in row:
-                lst.append(l)
-
-        # for i in sort_tasks:
-        #     lst.append(i)
-        print("Lista", lst)
-        # lista_elemente_noi = [i[1].lower() for i in sort_tasks]
-        # print("El. noi: ", lista_elemente_noi)
-        write = csv.writer(csv_file)
-        write.writerow(lst)
-        # print(lst)
-    # #
-    # lines = list(sort_tasks)
-    # lines[int(index_task)] = list_tasks
-
-    # list_add_tasks = csv_reader_tasks()
-    # with open('tasks.csv', mode='r+') as file:
-        # lines = []
-        # lines = list(sort_tasks)
-        # lines[int(index_task)] = list_tasks
-        # lines.append(list_tasks)
-        # write = csv.writer(csv_file)
-        # write.writerow(sort_tasks)
-    # while True:
-    #     sort_tasks = csv_reader_tasks()
-    #     for index, row in enumerate(sort_tasks):
-    #         print(index, row)
-    #     index_task = input("Introduceti nr task-ului de modificat: ")
-    #     print(sort_tasks[int(index_task)])
-    #     with open('tasks.csv', mode='w') as file:
-    #         # exit_opt = input('Continuati adaugarea? (d\\n)')
-    #         # if exit_opt == 'd':
-    #             list_add_tasks = csv_reader_tasks()
-    #             list_categories = csv_reader_categories()
-    #             # for index, row in enumerate(list_add_tasks):
-    #                 # print(row)
-    #             print(sorted(list_add_tasks, key=lambda cat: cat[3]))
-    #             # list_sorted_by_category = sorted(list_add_tasks, key=lambda cat: list_add_tasks(row[3]), reverse=True)
-    #             check_tasks = []
-    #             for index, row in enumerate(list_add_tasks):
-    #                 check_tasks.append(row[0])
-    #             print('Check task:', check_tasks)
-    #
-    #             list_check_category = [cat for lst_cat in list_categories for cat in lst_cat]
-    #             print(list_check_category)
-    #             var_task = input("Editeaza task-ul: ").lower()
-    #             var_date = input("Editeaza data: ").lower()
-    #             var_person = input("Editeaza persoana responsabila: ").lower()
-    #             var_category = input("Editeaza categoria: ").lower()
-    #             list_tasks = [var_task, var_date, var_person, var_category]
-    #
-    #             if var_task not in check_tasks:
-    #                 if var_category in list_check_category:
-    #                     writer = csv.writer(file)
-    #                     writer.writerow(list_tasks)
-    #                     exit_opt = input('Continuati editarea? (d\\n)')
-    #                     if exit_opt == 'd':
-    #                         continue
-    #                     elif exit_opt == 'n':
-    #                         break
-    #                 else:
-    #                     print('Categoria nu exista!')
-    #                     continue
-    #             else:
-    #                 print('Task-ul exista deja!')
-    #                 continue
-    # elif exit_opt == 'n':
-    #     break
-    return
-
-
 def main_function():
     while True:
         # add_categories()
@@ -267,19 +239,24 @@ def main_function():
 
 def menu():
     while True:
-        # print('Alege una din urmatoarele optiuni:')
-        list_option = input('Alege una din urmatoarele optiuni: \n Pentru listare apasa tasta 1'
-                            '\n Pentru sortare apasa tasta 2 \n Pentru filtrare date apasa tasta 3'
-                            '\n Pentru adaugare task nou apasa tasta 4 \n Pentru editare task existent apasa tasta 5'
+        list_option = input('Alege una din urmatoarele optiuni: \n Pentru adaugare categorie apasa tasta 0 '
+                            '\n Pentru listare apasa tasta 1 \n Pentru sortare apasa tasta 2 '
+                            '\n Pentru filtrare date apasa tasta 3 \n Pentru adaugare task nou apasa tasta 4 '
+                            '\n Pentru editare task existent apasa tasta 5'
                             '\n Pentru stergere task existent apasa tasta 6 '
                             '\n Pentru iesire din programa apasa \'x\' \n Alege optiunea: ')
-        if list_option == '1':
-            print('Ati apasat tasta 1!')
+        if list_option == '0':
+            print('Ati ales sa adaugati o categorie!')
+            add_categories()
+        elif list_option == '1':
+            print('Ati ales listare date sortate dupa categorie!')
             sort_category_asc()
         elif list_option == '2':
             list_sort = input('Pentru sortare alege una din optiunile: \n a) sortare ascendenta task: '
-                              '\n b) sortare descendenta task: \n c) sortare ascendenta data: \n d) sortare descendenta data: '
-                              '\n e) sortare ascendenta persoana responsabila: \n f) sortare descendenta persoana responsabila:'
+                              '\n b) sortare descendenta task: \n c) sortare ascendenta data: \n d) sortare '
+                              'descendenta data:'
+                              '\n e) sortare ascendenta persoana responsabila: \n f) sortare descendenta persoana '
+                              'responsabila:'
                               '\n g) sortare ascendenta categorie: \n h) sortare descendenta categorie: '
                               '\n Alege o litera pentru sortare: ')
             if list_sort == 'a':
@@ -306,7 +283,6 @@ def menu():
             elif list_sort == 'h':
                 print('Ati ales sortare descendenta dupa categorie!')
                 sort_category_desc()
-
         elif list_option == '3':
             print('Ati apasat tasta 3!')
             filter_option = input('Filtrarea se face dupa:\n'
@@ -331,24 +307,14 @@ def menu():
             print('Adaugati un task nou!')
             add_tasks()
         elif list_option == '5':
-            print('Ati apasat tasta 5!')
+            print('Editati un task!')
             edit_task()
         elif list_option == '6':
-            print('Ati apasat tasta 6!')
+            print('Stergeti un task!')
+            delete_task()
         elif list_option == 'x':
             break
     return
 
 
 menu()
-# main_function()
-# add_tasks()
-# sort_category()
-# print()
-# sort_task_asc()
-# print()
-# sort_task_desc()
-
-# filter_date()
-# filter_person()
-# edit_task()
