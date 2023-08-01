@@ -9,7 +9,7 @@ import csv
 
 option = webdriver.ChromeOptions()
 option.add_argument("start-maximized")
-<<<<<<< HEAD
+# <<<<<<< HEAD
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
 # driver.get('https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-1-martie-ora-13-00-2/')
 # rows = driver.fin("//*[@id='proxylisttable']/tbody/tr")
@@ -77,17 +77,17 @@ df = pd.DataFrame(dic, index=[0]).transpose()
         # df.reset_index(drop=True)
         # df = pd.DataFrame(lst)
 df.to_csv('Covid_data.csv', sep='|')
-=======
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
-driver.get('https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-1-martie-ora-13-00-2/')
-table = driver.find_element(by=By.XPATH, value='/html/body/div[3]/div/div[1]/main/article/div/div/table[1]/tbody')
-table1 = driver.find_element(by=By.XPATH, value='/html/body/div[3]/div/div[1]/main/article/div/div/table[1]/tbody/tr[4]')
 
-lista = table.text.split('\n')
-lista1 = table.text.split('\n')
-print(lista)
-print(lista1)
->>>>>>> origin/main
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
+# driver.get('https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-1-martie-ora-13-00-2/')
+# table = driver.find_element(by=By.XPATH, value='/html/body/div[3]/div/div[1]/main/article/div/div/table[1]/tbody')
+# table1 = driver.find_element(by=By.XPATH, value='/html/body/div[3]/div/div[1]/main/article/div/div/table[1]/tbody/tr[4]')
+#
+# lista = table.text.split('\n')
+# lista1 = table.text.split('\n')
+# print(lista)
+# print(lista1)
+
 
 # get_element = driver.find_element(by=By.ID, value='searchboxTrigger')
 # get_element.send_keys('telefon')
@@ -115,9 +115,3 @@ print(lista1)
 # #     variabila = csv.writer(file, delimiter='|')
 # #     variabila.writerows(list_of_elements)
 # df = pd.DataFrame(list_of_elements).transpose()
-<<<<<<< HEAD
-# df.to_csv('emag_all_products.csv', sep='|')
-=======
-# df.to_csv('emag_all_products.csv', sep='|')
-
->>>>>>> origin/main
