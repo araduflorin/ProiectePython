@@ -22,7 +22,7 @@ def get_link(link):
     rows = len(driver.find_elements(By.XPATH, "/html/body/div[3]/div/div[1]/main/article/div/div/table[1]/tbody/tr"))
     cols = len(driver.find_elements(By.XPATH, "/html/body/div[3]/div/div[1]/main/article/div/div/table[1]/tbody/tr[1]/td"))
     lst=[]
-    for r in range(2, rows - 2):
+    for r in range(2, 44):
         for p in range(1, cols - 1):
             value = driver.find_element(By.XPATH, "/html/body/div[3]/div/div[1]/main/article/div/div/table[1]/tbody/tr[" + str(r) + "]/td[" + str(p) + "]").text
             lst.append(value)
@@ -45,13 +45,19 @@ def get_link(link):
 # Print rows and columns
 link1 = get_link('https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-1-martie-ora-13-00-2/')
 link2 = get_link('https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-2-martie-ora-13-00-2/')
+link3 = get_link('https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-3-martie-ora-13-00-2/')
+link4 = get_link('https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-4-martie-ora-13-00/')
+link5 = get_link('https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-4-martie-ora-13-00-2/')
 
-print(link1)
-print(link2)
-# print(link1[1])
-# print(link1[2])
-print(type(link1))
-# print(cols)
+# print(link1)
+# print(link2)
+# print(link3)
+# print(link4)
+# print(link5)
+# # print(link1[1])
+# # print(link1[2])
+# print(type(link1))
+# # print(cols)
 
 # Printing the table headers
 # print("Locators           " + "             Description")
@@ -70,13 +76,21 @@ dic = {}
 #     print()
 # print(lst)
 for i in range(0, len(link1), 3):
-        dic[link1[i], link1[i+1]] = link1[i+2]
+        # dic[link1[i], link1[i+1]] = [link1[i+2], link2[i+2], link3[i+2], link4[i+2], link5[i+2]]
+        # dic.add[link1[i], link1[i+1], link1[i+2], link2[i+2], link3[i+2], link4[i+2], link5[i+2]]
+        dic[i] = [link1[i], link1[i+1], link1[i+2], link2[i+2], link3[i+2], link4[i+2], link5[i+2]]
 print(dic)
-df = pd.DataFrame(dic, index=[0]).transpose()
+list_header = ['Nr.Crt','Judet','01.03','02.03','03.03','04.03','05.03']
+pd.options.display.float_format = '{:,.2f}'.format
+df = pd.DataFrame(dic).transpose()
+# df.head(list_header)
+# df.columns=list_header
         # df = pd.DataFrame(dic).transpose()
         # df.reset_index(drop=True)
         # df = pd.DataFrame(lst)
-df.to_csv('Covid_data.csv', sep='|')
+#
+
+df.to_csv('Covid_data.csv', sep='|', header=list_header, index=False)
 
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
 # driver.get('https://www.mai.gov.ro/informare-covid-19-grupul-de-comunicare-strategica-1-martie-ora-13-00-2/')
